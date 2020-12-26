@@ -1,11 +1,13 @@
 requirements:
 
-  bot_token:
+  bot_token: 
   
   bot_prefix: b!
   
-  role_nuke_on: True
+  role_nuke_on: False
   
-  massban_on: True
+  massban_on: False
   
-  channelname: None
+  webhook_spam_on: True
+  
+  channelname: ['㿦倚㸯⣩⍻탥赇횡趯', '纹떯㮲ﶛ㲭큷詐퍈', '鯳㭧莔狠量㜇跑죓撑䳴⡺']
