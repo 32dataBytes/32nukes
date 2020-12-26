@@ -1,0 +1,11 @@
+requirements:
+
+  bot_token:
+  
+  bot_prefix: b!
+  
+  role_nuke_on: True
+  
+  massban_on: True
+  
+  channelname: None
