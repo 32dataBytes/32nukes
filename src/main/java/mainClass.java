@@ -1,3 +1,4 @@
+import com.formdev.flatlaf.FlatLightLaf;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.server.Server;
@@ -39,6 +40,8 @@ public class mainClass extends JPanel {
     private configuration configuration;
 
     public mainClass() {
+        FlatLightLaf.install();
+
         //construct preComponents
         JMenu fileMenu = new JMenu ("File");
         JMenuItem open__nuke_fileItem = new JMenuItem ("Open .nuke File");

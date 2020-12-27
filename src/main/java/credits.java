@@ -1,3 +1,5 @@
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class credits extends JPanel {
     private JLabel jcomp6;
 
     public credits() {
+        FlatLightLaf.install();
         //construct components
         jcomp1 = new JLabel ("32dataBytes");
         jcomp2 = new JLabel ("Krabion");

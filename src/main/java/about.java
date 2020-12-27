@@ -1,3 +1,5 @@
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,6 +11,7 @@ public class about extends JPanel {
     private JLabel jcomp3;
 
     public about() {
+        FlatLightLaf.install();
         //construct components
         jcomp1 = new JLabel ("32nukes is a GUI based nukebot control program which allows users");
         jcomp2 = new JLabel ("to nuke servers on VoIP app 'Discord' efficiently with little to no ");
