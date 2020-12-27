@@ -2,13 +2,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class configuration {
-    String filepath;
-    String token;
-    ArrayList<String> spam_channel_names;
-    ArrayList<String> spam_messages;
-    Boolean ban_all_members;
-    Boolean webhook_spam;
-    Boolean give_everyone_admin;
+    private String filepath;
+    private String token;
+    private ArrayList<String> spam_channel_names;
+    private ArrayList<String> spam_messages;
+    private Boolean ban_all_members;
+    private Boolean webhook_spam;
+    private Boolean give_everyone_admin;
 
     public configuration(String filepath){
         ArrayList<String> temp = new ArrayList();
