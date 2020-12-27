@@ -21,10 +21,10 @@ public class configuration {
             System.out.println(e);
         }
         ArrayList<String> scn_temp = new ArrayList<String>();
-        String[] scn_temp_array = temp.get(1).split("=")[1].replaceAll(String.valueOf('['), "").replaceAll("]", "").split(", ");
+        String[] scn_temp_array = temp.get(1).split("=")[1].replaceAll("<", "").replaceAll(">", "").split(", ");
         for(String name : scn_temp_array) scn_temp.add(name);
         ArrayList<String> sm_temp = new ArrayList<String>();
-        String[] sm_temp_array = temp.get(2).split("=")[1].replaceAll(String.valueOf('['), "").replaceAll("]", "").split(", ");
+        String[] sm_temp_array = temp.get(2).split("=")[1].replaceAll("<", "").replaceAll(">", "").split(", ");
         for(String message : sm_temp_array) sm_temp.add(message);
 
         this.filepath = filepath;

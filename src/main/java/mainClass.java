@@ -4,6 +4,9 @@ import org.javacord.api.entity.server.Server;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -129,6 +132,24 @@ public class mainClass extends JPanel {
         startButton.setBounds (10, 340, 400, 30);
 
 
+        aboutItem.addActionListener(openAbout ->{
+            about.main();
+        });
+
+        creditsItem.addActionListener(openCredits ->{
+            credits.main();
+        });
+
+        discordItem.addActionListener(openDiscordServer ->{
+            try {
+                Desktop.getDesktop().browse(new URI("https://discord.gg/6SryXHHYab"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        });
+
         // TODO: Add filetype checking
         open__nuke_fileItem.addActionListener(openFile ->{
             Integer returnedValue = fileChooser.showOpenDialog(mainClass.this);
@@ -154,6 +175,10 @@ public class mainClass extends JPanel {
                 banEveryoneToggle.setSelected(configuration.banAllMembers());
                 webhookSpamToggle.setSelected(configuration.webhookSpam());
                 adminEveryoneToggle.setSelected(configuration.giveEveryoneAdmin());
+
+                banEveryoneToggle.setText(configuration.banAllMembers().toString().toUpperCase());
+                webhookSpamToggle.setText(configuration.webhookSpam().toString().toUpperCase());
+                adminEveryoneToggle.setText(configuration.giveEveryoneAdmin().toString().toUpperCase());
             }
         });
     }
