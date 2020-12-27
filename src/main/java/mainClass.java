@@ -28,7 +28,6 @@ public class mainClass extends JPanel {
     private JButton removeSpamChannelButton;
     private JButton removeSpamMessageButton;
     private JToggleButton banEveryoneToggle;
-    private JLabel extraSettingsLabel;
     private JLabel banEveryoneLabel;
     private JLabel webhookSpamLabel;
     private JToggleButton webhookSpamToggle;
@@ -75,7 +74,6 @@ public class mainClass extends JPanel {
         removeSpamChannelButton = new JButton ("-");
         removeSpamMessageButton = new JButton ("-");
         banEveryoneToggle = new JToggleButton ("FALSE", false);
-        extraSettingsLabel = new JLabel ("Extra Settings");
         banEveryoneLabel = new JLabel ("Ban Everyone");
         webhookSpamLabel = new JLabel ("Webhook Spam");
         webhookSpamToggle = new JToggleButton ("FALSE", false);
@@ -105,7 +103,6 @@ public class mainClass extends JPanel {
         add (removeSpamChannelButton);
         add (removeSpamMessageButton);
         add (banEveryoneToggle);
-        add (extraSettingsLabel);
         add (banEveryoneLabel);
         add (webhookSpamLabel);
         add (webhookSpamToggle);
@@ -129,7 +126,6 @@ public class mainClass extends JPanel {
         removeSpamChannelButton.setBounds (155, 215, 45, 25);
         removeSpamMessageButton.setBounds (355, 215, 45, 25);
         banEveryoneToggle.setBounds (10, 300, 70, 30);
-        extraSettingsLabel.setBounds (160, 250, 140, 25);
         banEveryoneLabel.setBounds (10, 275, 80, 25);
         webhookSpamLabel.setBounds (150, 275, 100, 25);
         webhookSpamToggle.setBounds (150, 300, 70, 30);
