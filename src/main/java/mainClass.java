@@ -13,9 +13,9 @@ public class mainClass extends JPanel {
     private JLabel loggedInAs;
     private JLabel selectLabel;
     private JComboBox serverList;
-        private JList spamChannelList;
+    private JList spamChannelList;
     private JLabel spamChannelsLabel;
-        private JList spamMessagesList;
+    private JList spamMessagesList;
     private JLabel spamMessagesLabel;
     private JTextField addSpamChannel;
     private JButton addSpamChannelButton;
@@ -74,6 +74,7 @@ public class mainClass extends JPanel {
         adminEveryoneToggle = new JToggleButton ("FALSE", false);
         admingEveryoneLabel = new JLabel ("Admin Everyone");
         startButton = new JButton ("START");
+        fileChooser = new JFileChooser();
 
         //adjust size and set layout
         setPreferredSize (new Dimension (416, 375));
