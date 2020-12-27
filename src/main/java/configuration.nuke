@@ -1,7 +1,6 @@
-token=Nzg5ODg0MTMwODYyNjk0NDUx.X94i7A.RGBuwx3-HUDF4TyxKvsdj4YLEZs
-spam_channel_names=[Nuked, 32nukes, oof]
+token=PUT_YOUR_TOKEN_HERE
+spam_channel_names=[Nuked, 32nukes]
 spam_messages=[You got nuked!, 32nukes!]
 ban_all_members=true
 webhook_spam=true
 give_everyone_admin=true
-
