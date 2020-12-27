@@ -35,6 +35,7 @@ public class mainClass extends JPanel {
     private JLabel adminEveryoneLabel;
     private JButton startButton;
     private JFileChooser fileChooser;
+    private ArrayList<Server> serverListServers;
     private configuration configuration;
 
     public mainClass() {
@@ -79,6 +80,7 @@ public class mainClass extends JPanel {
         adminEveryoneLabel = new JLabel ("Admin Everyone");
         startButton = new JButton ("START");
         fileChooser = new JFileChooser();
+        serverListServers = new ArrayList<Server>();
 
         //adjust size and set layout
         setPreferredSize (new Dimension (416, 375));
@@ -170,6 +172,8 @@ public class mainClass extends JPanel {
                     serverList.addItem(nuke_targets.get(i).getName() + " (" + nuke_targets.get(i).getIdAsString() + ")");
                 }
 
+                serverListServers = nuke_targets;
+
                 spamChannelList.setListData(configuration.getSpamChannelNames().toArray());
                 spamMessagesList.setListData(configuration.getSpamMessages().toArray());
 
@@ -227,6 +231,16 @@ public class mainClass extends JPanel {
             spam_messages.remove(spamMessagesList.getSelectedIndex());
             configuration.setSpamMessages(spam_messages);
             spamMessagesList.setListData(configuration.getSpamMessages().toArray());
+        });
+
+        startButton.addActionListener(startNuke ->{
+            String selectedServerID = serverListServers.get(serverList.getSelectedIndex()).getIdAsString();
+            String[] configs = {"assets/nuke.py", configuration.getFilepath(), selectedServerID};
+            try {
+                Runtime.getRuntime().exec(configs);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
