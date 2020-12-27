@@ -67,7 +67,7 @@ public class credits extends JPanel {
 
     public static void main () {
         JFrame frame = new JFrame ("Credits");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation (JFrame.HIDE_ON_CLOSE);
         frame.getContentPane().add (new credits());
         frame.pack();
         frame.setVisible (true);

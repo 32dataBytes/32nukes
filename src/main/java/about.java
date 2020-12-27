@@ -32,7 +32,7 @@ public class about extends JPanel {
 
     public static void main () {
         JFrame frame = new JFrame ("About");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation (JFrame.HIDE_ON_CLOSE);
         frame.getContentPane().add (new about());
         frame.pack();
         frame.setVisible (true);

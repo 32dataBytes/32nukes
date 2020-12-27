@@ -24,7 +24,7 @@ public class mainClass extends JPanel {
     private JButton addSpamChannelButton;
     private JTextField addSpamMessage;
     private JButton addSpamMessageButton;
-    private JButton removeSpamChannelButoon;
+    private JButton removeSpamChannelButton;
     private JButton removeSpamMessageButton;
     private JToggleButton banEveryoneToggle;
     private JLabel extraSettingsLabel;
@@ -32,9 +32,10 @@ public class mainClass extends JPanel {
     private JLabel webhookSpamLabel;
     private JToggleButton webhookSpamToggle;
     private JToggleButton adminEveryoneToggle;
-    private JLabel admingEveryoneLabel;
+    private JLabel adminEveryoneLabel;
     private JButton startButton;
     private JFileChooser fileChooser;
+    private configuration configuration;
 
     public mainClass() {
         //construct preComponents
@@ -67,7 +68,7 @@ public class mainClass extends JPanel {
         addSpamChannelButton = new JButton ("+");
         addSpamMessage = new JTextField (5);
         addSpamMessageButton = new JButton ("+");
-        removeSpamChannelButoon = new JButton ("-");
+        removeSpamChannelButton = new JButton ("-");
         removeSpamMessageButton = new JButton ("-");
         banEveryoneToggle = new JToggleButton ("FALSE", false);
         extraSettingsLabel = new JLabel ("Extra Settings");
@@ -75,7 +76,7 @@ public class mainClass extends JPanel {
         webhookSpamLabel = new JLabel ("Webhook Spam");
         webhookSpamToggle = new JToggleButton ("FALSE", false);
         adminEveryoneToggle = new JToggleButton ("FALSE", false);
-        admingEveryoneLabel = new JLabel ("Admin Everyone");
+        adminEveryoneLabel = new JLabel ("Admin Everyone");
         startButton = new JButton ("START");
         fileChooser = new JFileChooser();
 
@@ -96,7 +97,7 @@ public class mainClass extends JPanel {
         add (addSpamChannelButton);
         add (addSpamMessage);
         add (addSpamMessageButton);
-        add (removeSpamChannelButoon);
+        add (removeSpamChannelButton);
         add (removeSpamMessageButton);
         add (banEveryoneToggle);
         add (extraSettingsLabel);
@@ -104,7 +105,7 @@ public class mainClass extends JPanel {
         add (webhookSpamLabel);
         add (webhookSpamToggle);
         add (adminEveryoneToggle);
-        add (admingEveryoneLabel);
+        add (adminEveryoneLabel);
         add (startButton);
 
         //set component bounds (only needed by Absolute Positioning)
@@ -120,7 +121,7 @@ public class mainClass extends JPanel {
         addSpamChannelButton.setBounds (110, 215, 45, 25);
         addSpamMessage.setBounds (210, 215, 100, 25);
         addSpamMessageButton.setBounds (310, 215, 45, 25);
-        removeSpamChannelButoon.setBounds (155, 215, 45, 25);
+        removeSpamChannelButton.setBounds (155, 215, 45, 25);
         removeSpamMessageButton.setBounds (355, 215, 45, 25);
         banEveryoneToggle.setBounds (10, 300, 70, 30);
         extraSettingsLabel.setBounds (160, 250, 140, 25);
@@ -128,7 +129,7 @@ public class mainClass extends JPanel {
         webhookSpamLabel.setBounds (150, 275, 100, 25);
         webhookSpamToggle.setBounds (150, 300, 70, 30);
         adminEveryoneToggle.setBounds (290, 300, 70, 30);
-        admingEveryoneLabel.setBounds (290, 275, 100, 25);
+        adminEveryoneLabel.setBounds (290, 275, 100, 25);
         startButton.setBounds (10, 340, 400, 30);
 
 
@@ -179,7 +180,53 @@ public class mainClass extends JPanel {
                 banEveryoneToggle.setText(configuration.banAllMembers().toString().toUpperCase());
                 webhookSpamToggle.setText(configuration.webhookSpam().toString().toUpperCase());
                 adminEveryoneToggle.setText(configuration.giveEveryoneAdmin().toString().toUpperCase());
+                this.configuration = configuration;
             }
+        });
+
+        banEveryoneToggle.addActionListener(toggle ->{
+            configuration.setBanAllMembers(banEveryoneToggle.isEnabled());
+            banEveryoneToggle.setText(String.valueOf(banEveryoneToggle.isEnabled()).toUpperCase());
+        });
+
+        webhookSpamToggle.addActionListener(toggle ->{
+            configuration.setWebhookSpam(webhookSpamToggle.isEnabled());
+            webhookSpamToggle.setText(String.valueOf(webhookSpamToggle.isEnabled()).toUpperCase());
+        });
+
+        adminEveryoneToggle.addActionListener(toggle ->{
+            configuration.setGiveEveryoneAdmin(adminEveryoneToggle.isEnabled());
+            adminEveryoneToggle.setText(String.valueOf(adminEveryoneToggle.isEnabled()).toUpperCase());
+        });
+
+        addSpamChannelButton.addActionListener(addChannelName ->{
+            String name = addSpamChannel.getText();
+            ArrayList spam_channels = configuration.getSpamChannelNames();
+            spam_channels.add(name);
+            configuration.setSpamChannelNames(spam_channels);
+            spamChannelList.setListData(configuration.getSpamChannelNames().toArray());
+        });
+
+        addSpamMessageButton.addActionListener(addMessage ->{
+            String message = addSpamMessage.getText();
+            ArrayList spam_messages = configuration.getSpamMessages();
+            spam_messages.add(message);
+            configuration.setSpamMessages(spam_messages);
+            spamMessagesList.setListData(configuration.getSpamMessages().toArray());
+        });
+
+        removeSpamChannelButton.addActionListener(removeChannelName ->{
+            ArrayList spam_channels = configuration.getSpamChannelNames();
+            spam_channels.remove(spamChannelList.getSelectedIndex());
+            configuration.setSpamChannelNames(spam_channels);
+            spamChannelList.setListData(configuration.getSpamChannelNames().toArray());
+        });
+
+        removeSpamMessageButton.addActionListener(removeMessage ->{
+            ArrayList spam_messages = configuration.getSpamMessages();
+            spam_messages.remove(spamMessagesList.getSelectedIndex());
+            configuration.setSpamMessages(spam_messages);
+            spamMessagesList.setListData(configuration.getSpamMessages().toArray());
         });
     }
 
